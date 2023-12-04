@@ -1,0 +1,25 @@
+### 로그인(유저)
+POST http://localhost:5000/api/user/signin
+Content-Type: application/json
+
+{
+  "email": "uuu",
+  "password": "uuuu"
+}
+
+### 로그인(관리자)
+POST http://localhost:5000/api/admin/signin
+Content-Type: application/json
+
+{
+  "email": "aa",
+  "password": "aa"
+}
+
+### 투어 예약
+POST http://localhost:5000/api/tour/reservation
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTcwNzM4OSwiZXhwIjoxNzAyNzA3Mzg5fQ.KnSxr8Txk8XoqO_X9v72onbyoaveIrsZf7n4GxlTES0
+
+{
+}

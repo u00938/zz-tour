@@ -1,0 +1,20 @@
+# dependency
+node_modules
+package-lock.json
+
+# env
+.*.env
+
+# build files
+build
+
+# IDE
+.idea
+
+# secret
+src/*.json
+
+# logs
+ormlogs.log
+
+log
