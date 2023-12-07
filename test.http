@@ -1,10 +1,12 @@
+### vscode extension [rest client]
+
 ### 로그인(유저)
 POST http://localhost:5000/api/user/signin
 Content-Type: application/json
 
 {
-  "email": "uuu",
-  "password": "uuuu"
+  "email": "vvv",
+  "password": "vvvv"
 }
 
 ### 로그인(관리자)
@@ -19,7 +21,45 @@ Content-Type: application/json
 ### 투어 예약
 POST http://localhost:5000/api/tour/reservation
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTcwNzM4OSwiZXhwIjoxNzAyNzA3Mzg5fQ.KnSxr8Txk8XoqO_X9v72onbyoaveIrsZf7n4GxlTES0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTMjMxMjA0MDAwNyIsInVzZXJuYW1lIjoi7ZiV6rSR7Y6cIiwiZW1haWwiOiJ2dnYiLCJjcmVhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJ1cGRhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJpYXQiOjE3MDE4NzE2MzYsImV4cCI6MTcwMjg3MTYzNn0.rOl-estR5YlTPVhLV4DFyfsOVA2dl6dzylwOZIcLTN8
 
 {
+  "tourDate": "2023-12-08"
+}
+
+### 투어 예약 취소
+PUT http://localhost:5000/api/tour/reservation/cancel
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTMjMxMjA0MDAwNyIsInVzZXJuYW1lIjoi7ZiV6rSR7Y6cIiwiZW1haWwiOiJ2dnYiLCJjcmVhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJ1cGRhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJpYXQiOjE3MDE4NzE2MzYsImV4cCI6MTcwMjg3MTYzNn0.rOl-estR5YlTPVhLV4DFyfsOVA2dl6dzylwOZIcLTN8
+
+{
+  "id": "TR2312070015"
+}
+
+### 투어 예약 승인(관리자)
+PUT http://localhost:5000/api/admin/tour/reservation/approval
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTg4MTMxMywiZXhwIjoxNzAyODgxMzEzfQ.CNXigt_iAheRpmXdILrlmyvlFaZPNLyMjPinY2Uy1zE
+
+{
+  "id": "TR2312070015"
+}
+
+### 날짜별 투어 예약자 확인(관리자)
+GET http://localhost:5000/api/admin/tour/reservation/user?date=2023-12-10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTg4MTMxMywiZXhwIjoxNzAyODgxMzEzfQ.CNXigt_iAheRpmXdILrlmyvlFaZPNLyMjPinY2Uy1zE
+
+### 투어 스케줄 확인
+GET http://localhost:5000/api/tour/schedule?YYYY=2024&MM=01
+Content-Type: application/json
+
+### 투어 휴일 추가(관리자)
+POST http://localhost:5000/api/admin/tour/holiday
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTkyOTI3OSwiZXhwIjoxNzAyOTI5Mjc5fQ.NDNKQyk2cjhCXHaEXa5zq-EqYxYCPyYCxtDnCF4fZPM
+
+{
+  "holidayType": "date",
+  "holidayDate": "2024-11-06"
 }

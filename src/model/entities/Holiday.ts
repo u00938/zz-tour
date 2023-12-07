@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
+@Index("holiday_type", ["holidayType", "holidayDate"], { unique: true })
 @Entity("holiday", { schema: "zz_tour" })
 export class Holiday {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })

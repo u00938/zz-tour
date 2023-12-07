@@ -1,4 +1,5 @@
 import { AdminUser } from '@/model/entities/AdminUser';
+import { Holiday } from '@/model/entities/Holiday';
 import { TourReservation } from '@/model/entities/TourReservation';
 import { User } from '@/model/entities/User';
 import { getBoolean } from '@/util/cast';
@@ -6,6 +7,8 @@ import token from '@/util/token';
 import dayjs from 'dayjs';
 import { Service } from 'typedi';
 import { getConnection, getManager } from 'typeorm';
+import CacheService from './cache';
+import cache from '@/loader/cache';
 
 @Service()
 export default class AdminService {
@@ -101,4 +104,41 @@ export default class AdminService {
       throw e;
     }
   }
+
+  public static async AddTourHoliday(bodyData): Promise<string> {
+    const {
+      holidayType,
+      holidayDate
+    } = bodyData;
+
+    const holiday = await getConnection('zz_tour')
+    .getRepository(Holiday).findOne({
+      holidayType,
+      holidayDate
+    });
+
+    // 이 경우 중복값이라고 해서 에러 낼 필요는 없다고 판단 - 없을 경우만 insert, 캐시 갱신
+    if (!holiday) {
+      await getConnection('zz_tour')
+      .createQueryBuilder()
+      .insert()
+      .into(Holiday)
+      .values({
+        holidayType,
+        holidayDate
+      })
+      .execute();
+
+      // 가능한 스케줄 리스트 캐시, 휴일 캐시 갱신
+      // 우선 3개월까지 갖고있는걸로
+      await CacheService.Holiday();
+
+      const fromDate = dayjs().tz().format('YYYY-MM-DD');
+      const toDate = dayjs(fromDate).tz().add(3, 'month').endOf('month').format('YYYY-MM-DD');
+
+      await CacheService.TourSchedule(fromDate, toDate);
+    }
+
+    return 'success';
+  }  
 }

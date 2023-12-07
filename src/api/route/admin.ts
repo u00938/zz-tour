@@ -68,6 +68,27 @@ export default (app: Router) => {
         return next(e);
       }
     }
+  );
+
+  route.post('/tour/holiday',
+    celebrate({
+      body: Joi.object({
+        holidayType: Joi.string().valid('day', 'date', 'except').required(),
+        holidayDate: Joi.string().required()
+      })
+    }),
+    middleware.isAuth, middleware.attachAdminUser,
+    async (req: Request, res: Response, next: NextFunction) => {
+      const logger: Logger = Container.get('logger');
+
+      try {
+        const result = await AdminService.AddTourHoliday(req.body);
+        return res.status(201).json(result);
+      } catch (e) {
+        logger.error('error %o', e);
+        return next(e);
+      }
+    }
   );  
 
 }

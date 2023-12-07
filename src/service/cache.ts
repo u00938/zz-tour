@@ -3,8 +3,10 @@ import redisClient from "@/loader/redis";
 import { Holiday } from "@/model/entities/Holiday";
 import check from "@/util/check";
 import dayjs from "dayjs";
-import { Service } from "typedi";
+import { Inject, Service } from "typedi";
 import { getConnection, getManager } from "typeorm";
+import { Logger } from "winston";
+import logger from '@/loader/logger';
 
 @Service()
 export default class CacheService {
@@ -29,6 +31,8 @@ export default class CacheService {
 
     await redisClient.set('holiday', JSON.stringify(holidayData));
     cache.holiday.set('holiday', JSON.stringify(holidayData));
+    
+    logger.info(`holiday cache setting`);
   }
 
   public static async TourSchedule(fromDate, toDate): Promise<void> {
@@ -74,6 +78,7 @@ export default class CacheService {
     await redisClient.set('schedule', JSON.stringify(dateData));
     cache.schedule.set('schedule', JSON.stringify(dateData));
 
+    logger.info(`tour schedule cache setting - from: ${fromDate} to: ${toDate}`);
     /*
     {
       '2023-12': [
