@@ -3,6 +3,7 @@ import mysqlLoader from './mysql';
 import Logger from './logger';
 import { Container } from 'typedi';
 import redisClient from './redis';
+import './dayjs';
 
 export default async ({ expressApp }) => {
   Container.set('logger', Logger);

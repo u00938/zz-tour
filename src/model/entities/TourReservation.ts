@@ -16,6 +16,12 @@ export class TourReservation {
   @Column("tinyint", { name: "approval", default: () => "'0'" })
   approval: number;
 
+  @Column("tinyint", { name: "cancel", default: () => "'0'" })
+  cancel: number;
+
+  @Column("varchar", { name: "status_text", length: 45, comment: "예약, 예약 대기, 예약 취소" })
+  statusText: string;
+
   @Column("datetime", {
     name: "created_dt",
     nullable: true,
