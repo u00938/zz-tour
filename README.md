@@ -8,7 +8,7 @@ $ npm install
 
 ## DB 생성 script
 
-[sql 파일] ()
+[sql 파일](https://github.com/u00938/zz-tour/blob/main/zz_tour.sql)
 
 ## .dev.env
 
@@ -39,4 +39,12 @@ $ npm run start
 ## ERD
 
 <img src="https://i.imgur.com/HQ5PKlR.png" alt="logo" width="90%" />
+
+## API
+
+문서화하려고 했지만 시간 부족 이슈
+
+만들어진 API 목록은 [여기서](https://github.com/u00938/zz-tour/blob/main/test.http) 보실 수 있습니다.
+
+추후 업데이트
 
