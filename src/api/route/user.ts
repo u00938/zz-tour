@@ -20,7 +20,7 @@ export default (app: Router) => {
       const logger: Logger = Container.get('logger');
 
       try {
-        const result = await UserService.signIn(req.body);
+        const result = await UserService.SignIn(req.body);
         return res.status(200).json(result);
       } catch (e) {
         logger.error('error %o', e);
