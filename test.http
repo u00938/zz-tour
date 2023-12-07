@@ -21,10 +21,10 @@ Content-Type: application/json
 ### 투어 예약
 POST http://localhost:5000/api/tour/reservation
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTMjMxMjA0MDAwNyIsInVzZXJuYW1lIjoi7ZiV6rSR7Y6cIiwiZW1haWwiOiJ2dnYiLCJjcmVhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJ1cGRhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJpYXQiOjE3MDE4NzE2MzYsImV4cCI6MTcwMjg3MTYzNn0.rOl-estR5YlTPVhLV4DFyfsOVA2dl6dzylwOZIcLTN8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTMjMxMjA0MDAwNyIsInVzZXJuYW1lIjoi7ZiV6rSR7Y6cIiwiZW1haWwiOiJ2dnYiLCJjcmVhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJ1cGRhdGVkRHQiOiIyMDIzLTEyLTA2VDE0OjA3OjEwLjAwMFoiLCJpYXQiOjE3MDE5NDY1MzIsImV4cCI6MTcwMjk0NjUzMn0.jMIlSxt1ohkckhOhPThUyV7KoTuwZfaKS1tW2901WoA
 
 {
-  "tourDate": "2023-12-08"
+  "tourDate": "2023-12-07"
 }
 
 ### 투어 예약 취소

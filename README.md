@@ -42,9 +42,12 @@ $ npm run start
 
 ## API
 
-문서화하려고 했지만 시간 부족 이슈
+<img src="https://i.imgur.com/ZQAhJ0T.png" alt="logo" width="90%" />
 
-만들어진 API 목록은 [여기서](https://github.com/u00938/zz-tour/blob/main/test.http) 보실 수 있습니다.
+http://localhost:5000/api-docs 로 접속
 
-추후 업데이트
-
+```
+사용법
+1. 로그인 후 엑세스 토큰 발급
+2. Authorize 버튼을 눌러 엑세스 토큰 입력
+```

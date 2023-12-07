@@ -1,0 +1,29 @@
+/api/user/signin:
+  post:
+    tags:
+      - /user
+    summary: 로그인
+    requestBody:
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+            example:
+              email: vvv
+              password: vvvv
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+              example:
+                accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTk0MzQ1NCwiZXhwIjoxNzAyOTQzNDU0fQ.yuhOFXnnm4FZucntD5zwEpDkZtAcb7MKGUxQWGTwyYE

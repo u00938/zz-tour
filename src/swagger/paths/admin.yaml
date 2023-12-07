@@ -1,0 +1,111 @@
+/api/admin/signin:
+  post:
+    tags:
+      - /admin
+    summary: 로그인
+    requestBody:
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+            example:
+              email: aa
+              password: aa
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+              example:
+                accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTk0MzQ1NCwiZXhwIjoxNzAyOTQzNDU0fQ.yuhOFXnnm4FZucntD5zwEpDkZtAcb7MKGUxQWGTwyYE
+
+/api/admin/tour/reservation/approval:
+  put:
+    security: 
+      - bearerAuth: []
+    tags:
+      - /admin
+    summary: 예약 승인
+    requestBody:
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+            example:
+              id: TR2312070015
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: string
+              example: "id - TR2312070015 승인: true"
+
+/api/admin/tour/reservation/user:
+  get:
+    security: 
+      - bearerAuth: []
+    tags:
+      - /admin
+    summary: 날짜별 투어 예약자 확인
+    parameters:
+      - name: date
+        in: query
+        schema:
+          type: string
+          example: "2023-12-08"
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: array
+              example: [
+                {
+                  "tourReservationId": "TR2312060009",
+                  "statusText": "예약",
+                  "userId": "US2312040006",
+                  "username": "초코"
+                }
+              ]
+
+/api/admin/tour/holiday:
+  post:
+    security: 
+      - bearerAuth: []
+    tags:
+      - /admin
+    summary: 투어 휴일 추가
+    requestBody:
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              holidayType:
+                type: string
+                enum: [day, date, except]
+              holidayDate:
+                type: string
+            example:
+              holidayType: date
+              holidayDate: "2023-12-25"
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: string
+              example: "success"

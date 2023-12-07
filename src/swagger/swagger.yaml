@@ -1,0 +1,253 @@
+openapi: 3.0.0
+info:
+  version: 0.4.0
+  title: zz-tour API
+  description: zz-tour API document
+  license:
+    name: u00938
+servers:
+  - url: 'http://localhost:5000/'
+paths:
+  /api/admin/signin:
+    post:
+      tags:
+        - /admin
+      summary: 로그인
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              example:
+                email: aa
+                password: aa
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTk0MzQ1NCwiZXhwIjoxNzAyOTQzNDU0fQ.yuhOFXnnm4FZucntD5zwEpDkZtAcb7MKGUxQWGTwyYE
+  /api/admin/tour/reservation/approval:
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - /admin
+      summary: 예약 승인
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              example:
+                id: TR2312070015
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+                example: 'id - TR2312070015 승인: true'
+  /api/admin/tour/reservation/user:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - /admin
+      summary: 날짜별 투어 예약자 확인
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            example: '2023-12-08'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                example:
+                  - tourReservationId: TR2312060009
+                    statusText: 예약
+                    userId: US2312040006
+                    username: 초코
+  /api/admin/tour/holiday:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - /admin
+      summary: 투어 휴일 추가
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                holidayType:
+                  type: string
+                  enum:
+                    - day
+                    - date
+                    - except
+                holidayDate:
+                  type: string
+              example:
+                holidayType: date
+                holidayDate: '2023-12-25'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+                example: success
+  /api/user/signin:
+    post:
+      tags:
+        - /user
+      summary: 로그인
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              example:
+                email: vvv
+                password: vvvv
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFNMjMxMjA0MDAwMSIsInVzZXJuYW1lIjoi6rSA66as7J6QIiwiZW1haWwiOiJhYSIsImNyZWF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsInVwZGF0ZWREdCI6IjIwMjMtMTItMDRUMDg6NDY6MDkuMDAwWiIsImlhdCI6MTcwMTk0MzQ1NCwiZXhwIjoxNzAyOTQzNDU0fQ.yuhOFXnnm4FZucntD5zwEpDkZtAcb7MKGUxQWGTwyYE
+  /api/tour/reservation:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - /tour
+      summary: 투어 예약
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tourDate:
+                  type: string
+              example:
+                tourDate: '2023-12-08'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                  message:
+                    type: string
+                example:
+                  result: TR2312070015
+                  message: 예약 접수되었습니다
+  /api/tour/reservation/cancel:
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - /tour
+      summary: 투어 예약 취소
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              example:
+                id: TR2312070015
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+                example: '예약 취소되었습니다: 1건'
+  /api/tour/schedule:
+    get:
+      tags:
+        - /tour
+      summary: 투어 스케줄 확인
+      parameters:
+        - name: YYYY
+          in: query
+          schema:
+            type: string
+            example: '2024'
+        - name: MM
+          in: query
+          schema:
+            type: string
+            example: '01'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                example:
+                  - 1
+                  - 2
+                  - 7
+                  - 8
+                  - 9
+                  - 14
+                  - 15
+                  - 16
+                  - 21
+                  - 22
+                  - 23
+                  - 28
+                  - 29
+                  - 30
+components:
+  responses:
+    successResponse:
+      description: successful request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: null
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

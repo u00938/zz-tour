@@ -4,8 +4,9 @@ import cors from 'cors';
 import routes from '@/api';
 import { errors } from 'celebrate';
 import logger from '@/loader/logger';
-import swaggerFile from '@/swagger/swagger-output.json';
 import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import path from 'path';
 
 export default ({ app }: { app: express.Application }) => {
 
@@ -41,8 +42,9 @@ export default ({ app }: { app: express.Application }) => {
 
   app.use('/api', routes());
 
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
-
+  const swaggerSpec: any = YAML.load(path.join(__dirname, '../swagger/swagger.yaml'));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  
   app.use(errors());
 
   /// catch 404 and forward to error handler

@@ -9,6 +9,7 @@ import { Service } from 'typedi';
 import { getConnection, getManager } from 'typeorm';
 import CacheService from './cache';
 import cache from '@/loader/cache';
+import check from '@/util/check';
 
 @Service()
 export default class AdminService {
@@ -84,7 +85,8 @@ export default class AdminService {
         throw error;
       }
 
-      if (dayjs(history.tourDate).tz().isSameOrBefore(dayjs().tz().format('YYYY-MM-DD'))) {
+      if (dayjs(history.tourDate).tz().isSameOrBefore(dayjs().tz().format('YYYY-MM-DD'))
+        || await check.isHoliday(history.tourDate)) {
         const error = new Error(`예약 승인 불가한 날짜`);
         error.name = 'dev';
         throw error;

@@ -19,7 +19,9 @@ export default class TourService {
       // 날짜가 유효한지 체크
       // 당일 예약이 가능한지, 시간 등의 디테일 사항은 기획자 분과 소통 필요한 부분
       // 임의로 당일 예약 불가하게 설정
-      if (dayjs(tourDate).tz().isSameOrBefore(dayjs().tz().format('YYYY-MM-DD'))) {
+      // + 휴일 체크
+      if (dayjs(tourDate).tz().isSameOrBefore(dayjs().tz().format('YYYY-MM-DD'))
+        || await check.isHoliday(tourDate)) {
         const error = new Error(`예약 가능한 날짜가 아닙니다`);
         error.name = 'dev';
         throw error;

@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "NODE_ENV=dev nodemon",
-    "swagger": "node ./src/swagger/swagger.js"
+    "swagger": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./src/swagger/swagger.yaml --type yaml",
+    "api-docs": "npm run swagger"
   },
   "private": true,
   "author": "kim yuyoung (u0938223@gmail.com)",
@@ -23,18 +24,21 @@
     "node-cache": "^5.1.2",
     "reflect-metadata": "^0.1.13",
     "swagger-autogen": "^2.23.7",
+    "swagger-cli": "^4.0.4",
     "swagger-ui-express": "^5.0.0",
     "typedi": "^0.10.0",
     "typeorm": "<=0.2.37",
     "typeorm-model-generator": "^0.4.6",
     "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.5"
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.8",
     "@types/morgan": "^1.9.3",
     "@types/node": "^14.17.5",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@types/yamljs": "^0.2.34",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.32.0",

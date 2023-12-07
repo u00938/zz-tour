@@ -1,0 +1,95 @@
+/api/tour/reservation:
+  post:
+    security: 
+      - bearerAuth: []
+    tags:
+      - /tour
+    summary: 투어 예약
+    requestBody:
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              tourDate:
+                type: string
+            example:
+              tourDate: "2023-12-08"
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                result:
+                  type: string
+                message:
+                  type: string
+              example:
+                result: TR2312070015
+                message: 예약 접수되었습니다
+
+/api/tour/reservation/cancel:
+  put:
+    security: 
+      - bearerAuth: []
+    tags:
+      - /tour
+    summary: 투어 예약 취소
+    requestBody:
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+            example:
+              id: TR2312070015
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: string
+              example: "예약 취소되었습니다: 1건"
+
+/api/tour/schedule:
+  get:
+    tags:
+      - /tour
+    summary: 투어 스케줄 확인
+    parameters:
+      - name: YYYY
+        in: query
+        schema:
+          type: string
+          example: "2024"
+      - name: MM
+        in: query
+        schema:
+          type: string
+          example: "01"
+    responses:
+      '200':
+        content: 
+          application/json:
+            schema:
+              type: array
+              example: [
+                1,
+                2,
+                7,
+                8,
+                9,
+                14,
+                15,
+                16,
+                21,
+                22,
+                23,
+                28,
+                29,
+                30
+              ]

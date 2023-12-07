@@ -1,0 +1,40 @@
+openapi: '3.0.0'
+info:
+  version: 0.4.0
+  title: zz-tour API
+  description: zz-tour API document
+  license:
+    name: u00938
+servers:
+  - url: http://localhost:5000/
+paths:
+  /api/admin/signin:
+    $ref: './paths/admin.yaml#/~1api~1admin~1signin'
+  /api/admin/tour/reservation/approval:
+    $ref: './paths/admin.yaml#/~1api~1admin~1tour~1reservation~1approval'   
+  /api/admin/tour/reservation/user: 
+    $ref: './paths/admin.yaml#/~1api~1admin~1tour~1reservation~1user'  
+  /api/admin/tour/holiday: 
+    $ref: './paths/admin.yaml#/~1api~1admin~1tour~1holiday'
+  /api/user/signin:
+    $ref: './paths/user.yaml#/~1api~1user~1signin'
+  /api/tour/reservation:
+    $ref: './paths/tour.yaml#/~1api~1tour~1reservation'
+  /api/tour/reservation/cancel:
+    $ref: './paths/tour.yaml#/~1api~1tour~1reservation~1cancel'
+  /api/tour/schedule:
+    $ref: './paths/tour.yaml#/~1api~1tour~1schedule'          
+components:
+  responses:
+    successResponse:
+      description: successful request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
