@@ -31,5 +31,6 @@ export default {
   cache: {
     redis: process.env.REDIS_HOST,
     dayTtl: process.env.NODE_ENV === 'prod' ? 86400 : 60
-  }
+  },
+  swagger: process.env.SWAGGER_HOST
 };

@@ -4,6 +4,8 @@ import cors from 'cors';
 import routes from '@/api';
 import { errors } from 'celebrate';
 import logger from '@/loader/logger';
+import swaggerFile from '@/swagger/swagger-output.json';
+import swaggerUi from 'swagger-ui-express';
 
 export default ({ app }: { app: express.Application }) => {
 
@@ -38,6 +40,8 @@ export default ({ app }: { app: express.Application }) => {
   app.use(express.urlencoded({ extended: true }));
 
   app.use('/api', routes());
+
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
 
   app.use(errors());
 

@@ -4,7 +4,8 @@
   "description": "zz tour api server",
   "main": "src/app.js",
   "scripts": {
-    "start": "NODE_ENV=dev nodemon"
+    "start": "NODE_ENV=dev nodemon",
+    "swagger": "node ./src/swagger/swagger.js"
   },
   "private": true,
   "author": "kim yuyoung (u0938223@gmail.com)",
@@ -21,6 +22,8 @@
     "mysql2": "^2.3.0",
     "node-cache": "^5.1.2",
     "reflect-metadata": "^0.1.13",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0",
     "typedi": "^0.10.0",
     "typeorm": "<=0.2.37",
     "typeorm-model-generator": "^0.4.6",
